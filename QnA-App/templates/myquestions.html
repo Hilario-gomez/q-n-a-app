@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    {% for q in question %} 
+    {% if q.answers_to_question %}
+    <div class="col mt-3">
+      <div class="card h-100 border-success">
+        <h5 class="card-header">Category: {{ q.category }}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{ q.question_text }}</h5>
+        </div>
+        <div class="card-footer">
+          <a href="{{url_for('view',question_id = q.id)}}" class="btn btn-success border-dark text-white">View Question</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="col mt-3">
+      <div class="card h-100 border-danger">
+        <h5 class="card-header">Category: {{ q.category }}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{ q.question_text }}</h5>
+        </div>
+        <div class="card-footer">
+          <a href="{{url_for('view',question_id = q.id)}}" class="btn btn-danger border-dark text-white">View Question</a>
+        </div>
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+
+{% endblock %}

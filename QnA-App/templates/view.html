@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="card my-3 border-dark">
+    <div class="card-header text-warning">
+      <h4><b><center>{{ question.question_text }}</center></b></h4>
+    </div>
+    <div class="card-body">
+      <form action="{{ url_for('view', question_id=question.id) }}" method="post">
+        <div class="form-group">
+  
+        <div class="form-group">
+          <p>Category: {{ question.category }}</p>
+          <textarea name="answerText" class="form-control" rows="3"></textarea>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary text-warning"><b>Post Your Answer</b></button>
+      </form>
+    </div>
+  </div>
+
+  {% for answer in answers %}
+  <div class="card mx-4 border-success">
+    <div class="card-body">
+      <a href="{{url_for('view',question_id = question.id)}}">
+        <p>{{ answer.answer_text }}</p>
+      </a>
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+  
+  </div>
+
+{% endblock %}
